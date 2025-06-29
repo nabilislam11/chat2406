@@ -82,7 +82,7 @@ const Registration = () => {
     <div className='flex flex-wrap '>
       <ToastContainer
         position="top-center"
-        autoClose={5000}
+        autoClose={2000}
         hideProgressBar={false}
         newestOnTop={false}
         closeOnClick={false}
@@ -118,11 +118,10 @@ const Registration = () => {
             <p className='bg-red-500 text-white mt-0.5 rounded-lg w-[298px] px-4 '>{passwordErr}</p>
             <label class="absolute text-sm text-secondary/70 duration-300 transform  -translate-y-4 top-2 z-10 origin-[0] bg-white  px-4 peer-focus:px-4 peer-focus:text-secondary/70  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2  peer-focus:-translate-y-4 rtl:peer-focus:translate-x-2/5 rtl:peer-focus:left-auto start-4">Password</label>
           </div>
-          <div className="w-[368px] text-center ">
+          <div className="w-[368px] flex flex-col items-center ">
             {
               loading ?
                 (<InfinitySpin
-                  
                   visible={true}
                   width="200"
                   color="#4fa94d"
