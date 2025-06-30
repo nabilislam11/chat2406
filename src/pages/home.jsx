@@ -4,6 +4,7 @@ import { FaCommentDots } from "react-icons/fa";
 import { AiTwotoneSetting } from "react-icons/ai";
 import { ImExit } from "react-icons/im";
 import Searchinput from '../components/Layoult/Searchinput';
+import Grouplist from '../components/Layoult/Grouplist';
 
 function home() {
   return (
@@ -30,8 +31,10 @@ function home() {
             <ImExit className=' size-10 text-white' />
           </div>
         </div>
-        <div className="w-[80%] ">
-          <Searchinput/>
+
+
+        <div className="w-[80%] h-[95vh] ">        
+            <Grouplist></Grouplist>
         </div>
       </div>
     </>

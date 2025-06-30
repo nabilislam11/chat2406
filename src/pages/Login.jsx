@@ -4,8 +4,8 @@ import { FcGoogle } from "react-icons/fc";
 import { useState } from 'react'
 import { RiEyeCloseLine } from "react-icons/ri";
 import { RiEyeFill } from "react-icons/ri";
-import { Link } from 'react-router';
-import { getAuth, signInWithEmailAndPassword,signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { Link, useNavigate } from 'react-router';
+import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { ToastContainer, toast } from 'react-toastify';
 const Login = () => {
     const [email, setEmail] = useState("")
@@ -14,7 +14,8 @@ const Login = () => {
     const [emailErr, setEmailErr] = useState("")
     const [passwordErr, setPassworderr] = useState("")
     const auth = getAuth();
-    const provider = new GoogleAuthProvider ()
+    const provider = new GoogleAuthProvider()
+    const navigate =useNavigate()
     const handleEmail = (e) => {
         setEmail(e.target.value);
         setEmailErr("")
@@ -48,7 +49,10 @@ const Login = () => {
                 // ...
                 console.log("successfull");
                 toast.success("Login successefully done")
-            
+                setTimeout(() => {
+                    navigate("/home")
+                    
+                }, 2000);
 
             })
             .catch((error) => {
@@ -58,21 +62,25 @@ const Login = () => {
                 toast.error("login unsuccessefull")
             });
     }
-    const handleGoogleSignin =() =>{
+    const handleGoogleSignin = () => {
         signInWithPopup(auth, provider)
-  .then((user) => {
-   console.log(user);
-   console.log("success");
-   
-   
-    
-  }).catch((error) => {
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.log(errorCode);
-    
-  });
+            .then((user) => {
+                console.log(user);
+                console.log("success");
+                      setTimeout(() => {
+                    navigate("/home")
+                    
+                }, 2000);
+
+
+
+            }).catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode);
+
+            });
     }
 
     return (

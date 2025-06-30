@@ -1,14 +1,15 @@
-import React from 'react'
-
+import React, { Children } from 'react'
+import { FiSearch } from "react-icons/fi";
+import { BsThreeDotsVertical } from "react-icons/bs";
 const Searchinput = () => {
   return (
-    <div className={`w-auto mb-3 relative ${className}`}>
-        <input type="text" className='w-full rounded-[20px] pr-10 pl-[68px] py-[18px] outline-none shadow-shadow-2  font-secondary placeholder:search  ' />
-        <FiSearch className='absolute top-50% font-semibold tex-[19px] translate-y-50% left-[23px] text-black  ' />
-        <BsThreeDotsVertical className='absolute top-50% font-semibold text-[19px] translate-y-50% right-[22px]  text-black ' />
+    <div className ={`w-auto mb-3 relative  ${Children}`}>
+        <input type="text" className='w-full rounded-[20px] pr-10 pl-[68px] py-[18px] outline-none shadow-[0px_4px_4px_rgba(0,0,0,0.25)] font-secondary placeholder:search  ' />
+        <FiSearch className='absolute top-[20px] font-semibold text-[19px]   left-[19px] text-black  ' />
+        <BsThreeDotsVertical className='absolute top-[20px] font-semibold text-[19px]  right-[22px]  text-black ' />
 
     </div>
   )
 }
 
-export default Searchinput
+export default Searchinput 
