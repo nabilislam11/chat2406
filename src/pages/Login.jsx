@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { RiEyeCloseLine } from "react-icons/ri";
 import { RiEyeFill } from "react-icons/ri";
 import { Link } from 'react-router';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword,signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { ToastContainer, toast } from 'react-toastify';
 const Login = () => {
     const [email, setEmail] = useState("")
@@ -14,7 +14,7 @@ const Login = () => {
     const [emailErr, setEmailErr] = useState("")
     const [passwordErr, setPassworderr] = useState("")
     const auth = getAuth();
-
+    const provider = new GoogleAuthProvider ()
     const handleEmail = (e) => {
         setEmail(e.target.value);
         setEmailErr("")
@@ -48,6 +48,7 @@ const Login = () => {
                 // ...
                 console.log("successfull");
                 toast.success("Login successefully done")
+            
 
             })
             .catch((error) => {
@@ -56,6 +57,22 @@ const Login = () => {
                 console.log(errorMessage);
                 toast.error("login unsuccessefull")
             });
+    }
+    const handleGoogleSignin =() =>{
+        signInWithPopup(auth, provider)
+  .then((user) => {
+   console.log(user);
+   console.log("success");
+   
+   
+    
+  }).catch((error) => {
+    // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode);
+    
+  });
     }
 
     return (
@@ -88,7 +105,7 @@ const Login = () => {
             />
             <div className=" lg:w-[55%] pl-[147px] pt-[220px] ">
                 <h1 className='font-primary font-bold text-[33px] text-secondary ' > Login to your account!</h1>
-                <div className="flex  items-center justify-center gap-2.5 border-1 border-gray-300   w-[220px]  rounded-[7px] mt-[29px] mb-[32px] ">
+                <div onClick={handleGoogleSignin} className="flex  cursor-pointer items-center justify-center gap-2.5 border-1 border-gray-300   w-[220px]  rounded-[7px] mt-[29px] mb-[32px] ">
                     <FcGoogle className='size-4  ' />
                     <p className='font-primary font-semibold text-[13px] text-secondary pt-[23px] pb-[21px]'>Login with Google</p>
                 </div>
