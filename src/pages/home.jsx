@@ -5,6 +5,8 @@ import { AiTwotoneSetting } from "react-icons/ai";
 import { ImExit } from "react-icons/im";
 import Searchinput from '../components/Layout/Searchinput';
 import Grouplist from '../components/Layout/Grouplist/Grouplist';
+import Friends from '../components/Layout/Friends/Friends';
+import Userlist from '../components/Layout/Userlist/Userlist';
 
 function home() {
   return (
@@ -31,12 +33,13 @@ function home() {
             <ImExit className=' size-10 text-white' />
           </div>
         </div>
-
-
-        <div className="w-[80%] h-[95vh] ">  
-              <Searchinput/>
+        
+        <div className="w-[80%] h-[95vh] flex flexp-wrap justify-around">  
+          
 
             <Grouplist></Grouplist>
+            <Friends></Friends>
+            <Userlist></Userlist>
         </div>
       </div>
     </>
