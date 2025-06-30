@@ -1,8 +1,8 @@
 import React from 'react'
-import Searchinput from './Searchinput'
+import Searchinput from '../Searchinput'
 import { PiClockAfternoon } from 'react-icons/pi'
-import group1 from "../../assets/group1.png" 
-import { CiSquarePlus } from "react-icons/ci";
+import group1 from "../../../assets/group1.png" 
+
 const Grouplist = () => {
     const groups = [
     {
@@ -43,10 +43,10 @@ const Grouplist = () => {
       lastMsg: "Let's pla"},
     ]
   return (
-    <div className='xl:w-[36%] w-full shadow-shadow h-[50%] rounded-[20px] px-[20px] font-poppins py-[20px]'>
-        <h2 className='font-semibold font-secondary text-[20px] text-black ' >Groups List</h2>
-        <Searchinput/>
-        <div className="overflow-y-scroll  h-[70%]">
+    <div className='xl:w-[36%] w-full  shadow-[0px_4px_4px_rgba(0,0,0,0.25)] h-[50%] rounded-[20px] px-[20px] font-poppins py-[20px] mt-[43px]'>
+        <h2 className='font-semibold font-secondary text-[20px] text-black  ' >Groups List</h2>
+       
+        <div className="overflow-y-scroll  h-[90%] pt-[43px]">
             {
                 groups.map((group,i)=>(
                         <div key={i} className=" flex py-[13px] items-center justify-between border-b-2 border-gray-300 ">
@@ -63,7 +63,7 @@ const Grouplist = () => {
                             </p>
                             </div>
                         </div>
-                        <button><CiSquarePlus size={5px} /></button>
+                        <button className='font-semibold font-secondary text-[20px] px-[22px] rounded-[5px] bg-black text-white' >Join</button>
                     </div>
                 )
                 
