@@ -124,7 +124,7 @@ const Registration = () => {
                 (<InfinitySpin
                   visible={true}
                   width="200"
-                  color="#4fa94d"
+                  color="#000"
                   ariaLabel="infinity-spin-loading"
                 />)
                 :

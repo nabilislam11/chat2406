@@ -7,10 +7,12 @@ import { RiEyeFill } from "react-icons/ri";
 import { Link, useNavigate } from 'react-router';
 import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { ToastContainer, toast } from 'react-toastify';
+import { InfinitySpin } from 'react-loader-spinner'
 const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [show, setshow] = useState(false)
+    const [loading,setloading]= useState(false)
     const [emailErr, setEmailErr] = useState("")
     const [passwordErr, setPassworderr] = useState("")
     const auth = getAuth();
@@ -49,6 +51,7 @@ const Login = () => {
                 // ...
                 console.log("successfull");
                 toast.success("Login successefully done")
+                setloading(true)
                 setTimeout(() => {
                     navigate("/home")
                     
@@ -60,7 +63,10 @@ const Login = () => {
                 const errorMessage = error.message;
                 console.log(errorMessage);
                 toast.error("login unsuccessefull")
-            });
+                setloading(false)
+            }
+           
+        );
     }
     const handleGoogleSignin = () => {
         signInWithPopup(auth, provider)
@@ -137,9 +143,19 @@ const Login = () => {
                         }
                         <label for="floating_outlined2" class="absolute text-sm text-secondary/70 duration-300 transform  -translate-y-4 top-2 z-10 origin-[0] bg-white  px-4 peer-focus:px-4 peer-focus:text-secondary/70  peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2  peer-focus:-translate-y-4 rtl:peer-focus:translate-x-2/5 rtl:peer-focus:left-auto start-4">Enter your password</label>
                     </div>
-                    <div className="w-[424px] ">
+                    <div className="w-[424px] flex flex-col items-center ">
+                        {
+                            loading?
+                               (<InfinitySpin
+                                              visible={true}
+                                              width="200"
+                                              color="#000"
+                                              ariaLabel="infinity-spin-loading"
+                                            />)
+                            :
+                             <button onClick={handleLogin} className=' w-full font-semibold font-nunito text-[20px] text-white py-[26px]  mb-[35px] px-[122px] bg-black rounded-[8px] mt-[51px]  ' >Login to Continue</button>
+                        }
 
-                        <button onClick={handleLogin} className=' w-full font-semibold font-nunito text-[20px] text-white py-[26px]  mb-[35px] px-[122px] bg-black rounded-[8px] mt-[51px]  ' >Login to Continue</button>
                         <p className='font-reguler font-primary text-[13px]  text-secondary  pl-[17px] '>Don’t have an account ?<Link to="/registration" className='text-orange-500 font-bold cursor-pointer'>Sign In</Link> </p>
                     </div>
                 </div>
