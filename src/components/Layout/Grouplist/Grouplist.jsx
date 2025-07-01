@@ -66,7 +66,7 @@ const Grouplist = () => {
                             </p>
                             </div>
                         </div>
-                        <button className='font-semibold font-secondary text-[20px] px-[22px] rounded-[5px] bg-black text-white' >Join</button>
+                        <button className='font-semibold font-secondary text-[20px] px-[22px] rounded-[5px] bg-black text-white mr-[32px] ' >Join</button>
                     </div>
                 )
                 

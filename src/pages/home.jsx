@@ -8,6 +8,7 @@ import Grouplist from '../components/Layout/Grouplist/Grouplist';
 import Friends from '../components/Layout/Friends/Friends';
 import Userlist from '../components/Layout/Userlist/Userlist';
 import FriendRequest from '../components/Layout/Friend request/FriendRequest';
+import MyGroups from '../components/My Groups/MyGroups';
 
 function home() {
   return (
@@ -36,13 +37,14 @@ function home() {
           </div>
         </div>
         
-        <div className="w-[80%] h-[95vh] flex flex-wrap justify-start gap-x-10  ">  
+        <div className="w-[80%] h-[95vh] flex flex-wrap justify-start gap-x-10 gap-y-10 ">  
           
 
             <Grouplist></Grouplist>
             <Friends></Friends>
             <Userlist></Userlist>
             <FriendRequest></FriendRequest>
+            <MyGroups></MyGroups>
            
         </div>
       </div>

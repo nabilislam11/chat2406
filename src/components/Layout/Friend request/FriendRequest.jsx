@@ -1,11 +1,30 @@
 import React from 'react'
 import { BsThreeDotsVertical } from "react-icons/bs";
 import request from "../../../assets/request.jpg"
+import request1 from "../../../assets/request1.jpg"
+import request2 from "../../../assets/request2.jpg"
+import request3 from "../../../assets/request3.jpg"
+
 
 const FriendRequest = () => {
   const FriendRequest =[  
     {
       img:request,
+      fullName:"Raghav",
+      msg:"Dinner?",
+    },
+    {
+      img:request1,
+      fullName:"Raghav",
+      msg:"Dinner?",
+    },
+    {
+      img:request2,
+      fullName:"Raghav",
+      msg:"Dinner?",
+    },
+    {
+      img:request3 ,
       fullName:"Raghav",
       msg:"Dinner?",
     },
@@ -42,7 +61,7 @@ const FriendRequest = () => {
                   <p className='font-semibold font-secondary text-[14px]  text-black '  >{request.msg}</p>
                 </div>
               </div>
-              <button>Accept</button>
+              <button className='font-semibold font-secondary text-[20px] px-[7px] mr-[62px] bg-black text-white '  >Accept</button>
             </div>
           ))
           }
