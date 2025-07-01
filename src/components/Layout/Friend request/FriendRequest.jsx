@@ -48,7 +48,7 @@ const FriendRequest = () => {
         <h3 className='font-semibold font-secondary text-[20px] text-black ' >Friend  Request</h3>
          <BsThreeDotsVertical className='font-semibold text-[20px] text-black '/>
          </div>
-         <div className=" overflow-y-scroll h-[70%] ">
+         <div className=" overflow-y-scroll h-[90%] ">
           {
           FriendRequest.map((request,i)=>(
             <div className="flex justify-between items-center py-[13px] border-b-2 border-gray-300 ">

@@ -9,25 +9,26 @@ import Friends from '../components/Layout/Friends/Friends';
 import Userlist from '../components/Layout/Userlist/Userlist';
 import FriendRequest from '../components/Layout/Friend request/FriendRequest';
 import MyGroups from '../components/My Groups/MyGroups';
+import BlockList from '../components/Block list/BlockList';
 
 function home() {
   return (
     <>
       <div className="flex h-screen py-[35px]  ">
-        <div className="w-[10.96%] rounded-[20px] my-[35px] ml-[35px] flex flex-col  justify-between  items-center     py-[38px] pl-[25px]  mr-[22px] bg-black">
+        <div className="w-[7.96%] rounded-[20px] my-[35px] ml-[35px] flex flex-col  justify-between      py-[38px] pl-[25px]  mr-[22px] bg-black">
 
           <div className="flex flex-col gap-y-9 ">
-                      <div className=" flex flex-col justify-center   w-[100px] h-[100px] rounded-full object-cover cursor-pointer bg-[url(assets/profile.jpg)] bg-center bg-no-repeat bg-cover"></div>
-            <div className=" relative  flex justify-center items-end cursor-pointer pt-[20px] pb-[25px] pl-[45px] pr-[65px]   rounded-l-[20px] bg-white ">
+                      <div className=" flex flex-col justify-end  items-center  w-[100px] h-[100px] rounded-full ml-[13px] object-cover cursor-pointer bg-[url(assets/profile.jpg)] bg-center bg-no-repeat bg-cover"></div>
+            <div className=" relative  flex justify-center items-end cursor-pointer pt-[20px] pb-[25px]    rounded-l-[20px] bg-white ">
               <GrHomeRounded className='size-7   ' />
               <div className="w-[8px] h-[75px] bg-black absolute top-0 right-0 rounded-l-[10px]  "></div>
             </div>
 
-            <div className=" relative  flex justify-center items-end cursor-pointer pt-[20px] pb-[25px] pl-[45px] pr-[65px]   rounded-l-[20px] bg-white ">
+            <div className=" relative  flex justify-center items-end cursor-pointer pt-[20px] pb-[25px]   rounded-l-[20px] bg-white ">
               <FaCommentDots className='size-7   ' />
               <div className="w-[8px] h-[75px] bg-black absolute top-0 right-0 rounded-l-[10px]  "></div>
             </div>
-            <div className=" relative  flex justify-center items-end cursor-pointer pt-[20px] pb-[25px] pl-[45px] pr-[65px]   rounded-l-[20px] bg-white ">
+            <div className=" relative  flex justify-center items-end cursor-pointer pt-[20px] pb-[25px]   rounded-l-[20px] bg-white ">
               <AiTwotoneSetting className='size-7   ' />
               <div className="w-[8px] h-[75px] bg-black absolute top-0 right-0 rounded-l-[10px]  "></div>
             </div>
@@ -37,7 +38,7 @@ function home() {
           </div>
         </div>
         
-        <div className="w-[80%] h-[95vh] flex flex-wrap justify-start gap-x-10 gap-y-10 ">  
+        <div className="w-[90%] h-[88vh] flex flex-wrap justify-start gap-x-10 gap-y-9 ">  
           
 
             <Grouplist></Grouplist>
@@ -45,6 +46,7 @@ function home() {
             <Userlist></Userlist>
             <FriendRequest></FriendRequest>
             <MyGroups></MyGroups>
+            <BlockList></BlockList>
            
         </div>
       </div>
