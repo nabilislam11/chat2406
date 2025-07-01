@@ -3,7 +3,18 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import request from "../../../assets/request.jpg"
 
 const FriendRequest = () => {
-  const FriendRequest =[  {
+  const FriendRequest =[  
+    {
+      img:request,
+      fullName:"Raghav",
+      msg:"Dinner?",
+    },
+    {
+      img:request,
+      fullName:"Raghav",
+      msg:"Dinner?",
+    },
+    {
       img:request,
       fullName:"Raghav",
       msg:"Dinner?",
