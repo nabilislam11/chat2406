@@ -12,12 +12,12 @@ const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [show, setshow] = useState(false)
-    const [loading,setloading]= useState(false)
+    const [loading, setloading] = useState(false)
     const [emailErr, setEmailErr] = useState("")
     const [passwordErr, setPassworderr] = useState("")
     const auth = getAuth();
     const provider = new GoogleAuthProvider()
-    const navigate =useNavigate()
+    const navigate = useNavigate()
     const handleEmail = (e) => {
         setEmail(e.target.value);
         setEmailErr("")
@@ -54,7 +54,7 @@ const Login = () => {
                 setloading(true)
                 setTimeout(() => {
                     navigate("/home")
-                    
+
                 }, 2000);
 
             })
@@ -65,17 +65,17 @@ const Login = () => {
                 toast.error("login unsuccessefull")
                 setloading(false)
             }
-           
-        );
+
+            );
     }
     const handleGoogleSignin = () => {
         signInWithPopup(auth, provider)
             .then((user) => {
                 console.log(user);
                 console.log("success");
-                      setTimeout(() => {
+                setTimeout(() => {
                     navigate("/home")
-                    
+
                 }, 2000);
 
 
@@ -91,19 +91,6 @@ const Login = () => {
 
     return (
         <div className="flex flex-wrap ">
-            <ToastContainer
-                position="top-center"
-                autoClose={2000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick={false}
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-
-            />
             <ToastContainer
                 position="bottom-center"
                 autoClose={2000}
@@ -145,15 +132,15 @@ const Login = () => {
                     </div>
                     <div className="w-[424px] flex flex-col items-center ">
                         {
-                            loading?
-                               (<InfinitySpin
-                                              visible={true}
-                                              width="200"
-                                              color="#000"
-                                              ariaLabel="infinity-spin-loading"
-                                            />)
-                            :
-                             <button onClick={handleLogin} className=' w-full font-semibold font-nunito text-[20px] text-white py-[26px]  mb-[35px] px-[122px] bg-black rounded-[8px] mt-[51px]  ' >Login to Continue</button>
+                            loading ?
+                                (<InfinitySpin
+                                    visible={true}
+                                    width="200"
+                                    color="#000"
+                                    ariaLabel="infinity-spin-loading"
+                                />)
+                                :
+                                <button onClick={handleLogin} className=' w-full font-semibold font-nunito text-[20px] text-white py-[26px]  mb-[35px] px-[122px] bg-black rounded-[8px] mt-[51px]  ' >Login to Continue</button>
                         }
 
                         <p className='font-reguler font-primary text-[13px]  text-secondary  pl-[17px] '>Don’t have an account ?<Link to="/registration" className='text-orange-500 font-bold cursor-pointer'>Sign In</Link> </p>

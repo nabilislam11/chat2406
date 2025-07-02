@@ -4,6 +4,7 @@ import './App.css'
 import Registration from './pages/Registration'
 import Login from "./pages/Login";
 import Home from './pages/Home';
+import Massege from "./pages/Messege";
 const router =createBrowserRouter([
   {
     path: "/registration",
@@ -16,7 +17,13 @@ const router =createBrowserRouter([
   {
     path: "/home",
     element :<Home/>,
-  }
+  },
+  
+  {
+    path: "/messege",
+    element :<Massege/>,
+  },
+  
  
 ])
 
