@@ -37,7 +37,7 @@ const Messegelist = () => {
 
 
     return (
-        <div className='xl:w-[28%] w-full h-[58%] rounded-[20px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] font-secondary px-[28px] py-[20px] ' >
+        <div className='xl:w-[28%] w-full h-[56%] rounded-[20px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] font-secondary px-[28px] py-[20px] ' >
             <Searchinput/>
             <div className="flex justify-between">
                 <h2 className='font-semibold font-secondary text-[20px]  text-black'>Friends</h2>

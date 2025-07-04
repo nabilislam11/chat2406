@@ -8,6 +8,8 @@ import { Link, useNavigate } from 'react-router';
 import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { ToastContainer, toast } from 'react-toastify';
 import { InfinitySpin } from 'react-loader-spinner'
+import { useDispatch } from 'react-redux';
+import { userLoginfo } from '../slice/userSlice';
 const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
@@ -18,6 +20,7 @@ const Login = () => {
     const auth = getAuth();
     const provider = new GoogleAuthProvider()
     const navigate = useNavigate()
+    const dispatch =useDispatch()
     const handleEmail = (e) => {
         setEmail(e.target.value);
         setEmailErr("")
@@ -46,12 +49,15 @@ const Login = () => {
 
         }
         signInWithEmailAndPassword(auth, email, password)
-            .then(() => {
-                // Signed in 
-                // ...
+            .then((user) => {
                 console.log("successfull");
+                
                 toast.success("Login successefully done")
                 setloading(true)
+                console.log(user.user);
+                
+                dispatch(userLoginfo(user.user) );
+                localStorage.setItem("userLoginfo",JSON.stringify(user) )
                 setTimeout(() => {
                     navigate("/home")
 
