@@ -13,71 +13,95 @@ import BlockList from '../components/Block list/BlockList';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { signOut } from "firebase/auth";
-function home() {
-   const auth = getAuth();
+import { InfinitySpin } from 'react-loader-spinner';
+function Home() {
+  const [loading, setloading] = useState(true);
+  const [verify, setVerify] = useState(false)
+  const auth = getAuth();
+  const data = useSelector(state => state.userinfo.value)
+  const navigate = useNavigate()
   const handelExit = () => {
-   
+    setloading(true)
     signOut(auth).then(() => {
 
       navigate("/registration")
-      
+
+
     }).catch((error) => {
       console.log(error);
-      
+      setloading(false)
+
     });
-
-
   }
-
-
-  const navigate = useNavigate()
-  const data = useSelector(state => state.userinfo.value)
   console.log(data, "data");
   useEffect(() => {
     if (!data) {
+
       navigate("/login")
 
     }
-  })
+    }, [] )
+
   onAuthStateChanged(auth, (user) => {
-    if (user.emailVerified) {
-      setVerify(true)
+    console.log(user);
+    if (user) {
+
+      if (user.emailVerified) {
+        setVerify(true)
+      }
+      setloading(false)
     }
+
+
   });
+  if (loading ) {
+    console.log("loading");
+
+    return (
+      <div className="flex justify-center w-full items-center h-screen  ">
+        <InfinitySpin
+          size={500}
+           visible={true}
+          color="#000"
+          ariaLabel="infinity-spin-loading"
+        />
+      </div>
+    );
+  }
 
 
-  const [verify, setVerify] = useState(false)
+
   return (
     <>
       {
         verify ?
           <div className="flex h-[95vh] mt-[20px]  ">
-            <div className="w-[7.96%] rounded-[20px]  ml-[35px] flex flex-col  justify-between      py-[38px] pl-[25px]  mr-[22px] bg-black">
+            <div className="w-[10.96%] rounded-[20px]  ml-[35px] flex flex-col  justify-between  py-[38px]   mr-[22px] bg-black">
 
               <div className="flex flex-col gap-y-9 ">
-                <div className=" flex flex-col justify-end  items-center  w-[100px] h-[100px] rounded-full ml-[13px] object-cover cursor-pointer bg-[url(assets/profile.jpg)] bg-center bg-no-repeat bg-cover"></div>
-                <div className=" relative  flex justify-center items-end cursor-pointer pt-[20px] pb-[25px]    rounded-l-[20px] bg-white ">
-                  <GrHomeRounded className='size-7   ' />
-                  <div className="w-[8px] h-[75px] bg-black absolute top-0 right-0 rounded-l-[10px]  "></div>
+                <div className=" flex flex-col  w-[100px] h-[100px] rounded-full mx-auto object-cover cursor-pointer bg-[url(assets/profile.jpg)] bg-center bg-no-repeat bg-cover"></div>
+                <div className="relative  after:content-[''] after:absolute after:top-0 after:left-[25px] after:rounded-l-[20px] py-5 after:bg-white  after:w-full after:h-full after:z-[-1] z-[1]  cursor-pointer before:content-[''] before:absolute before:top-0 before:right-0 before:w-[8px] before:h-full before:rounded-l-2xl before:shadow-2xl  before:bg-black before:z-[1] ">
+                  <GrHomeRounded className='size-9  mx-auto '   />
                 </div>
 
-                <div className=" relative  flex justify-center items-end cursor-pointer pt-[20px] pb-[25px]   rounded-l-[20px] bg-white ">
-                  <FaCommentDots className='size-7   ' />
-                  <div className="w-[8px] h-[75px] bg-black absolute top-0 right-0 rounded-l-[10px]  "></div>
+                <div className=" relative  after:content-[''] after:absolute after:top-0 after:left-[25px] after:rounded-l-[20px] py-5 after:bg-white  after:w-full after:h-full after:z-[-1] z-[1]  cursor-pointer before:content-[''] before:absolute before:top-0 before:right-0 before:w-[8px] before:h-full before:rounded-l-2xl before:shadow-2xl  before:bg-black before:z-[1]">
+                  <FaCommentDots className='size-9  mx-auto ' />
+                
                 </div>
-                <div className=" relative  flex justify-center items-end cursor-pointer pt-[20px] pb-[25px]   rounded-l-[20px] bg-white ">
-                  <AiTwotoneSetting className='size-7   ' />
-                  <div className="w-[8px] h-[75px] bg-black absolute top-0 right-0 rounded-l-[10px]  "></div>
+                <div className=" relative  after:content-[''] after:absolute after:top-0 after:left-[25px] after:rounded-l-[20px] py-5 after:bg-white  after:w-full after:h-full after:z-[-1] z-[1]  cursor-pointer before:content-[''] before:absolute before:top-0 before:right-0 before:w-[8px] before:h-full before:rounded-l-2xl before:shadow-2xl  before:bg-black before:z-[1] ">
+                  <AiTwotoneSetting className='size-9  mx-auto' />
+                 
                 </div>
               </div>
-              <div className=" flex flex-col  justify-end items-center  cursor-pointer  ">
-                <ImExit onClick={handelExit} className=' size-10 text-white' />
+              <div className="relative  after:content-[''] after:absolute after:top-0 after:left-[25px] after:rounded-l-[20px] py-5 after:bg-white  after:w-full after:h-full after:z-[-1] z-[1]  cursor-pointer before:content-[''] before:absolute before:top-0 before:right-0 before:w-[8px] before:h-full before:rounded-l-2xl before:shadow-2xl  before:bg-black before:z-[1]">
+                <ImExit onClick={handelExit} className=' size-10  mx-auto' />
               </div>
             </div>
 
-            <div className="w-[80%] h-[100%] flex flex-wrap justify-start gap-x-10 gap-y-3  ">
+            <div className="w-[80%] h-[100%] flex flex-wrap justify-start ml-[20px] gap-x-10 gap-y-3 ">
 
 
               <Grouplist></Grouplist>
@@ -96,4 +120,4 @@ function home() {
   )
 }
 
-export default home
+export default Home
