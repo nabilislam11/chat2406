@@ -23,6 +23,9 @@ function Home() {
   const auth = getAuth();
   const data = useSelector(state => state.userinfo.value)
   const navigate = useNavigate()
+  const handlemessege =()=>{
+    
+  }
   const handelExit = () => {
     setloading(true)
     signOut(auth).then(() => {
@@ -57,6 +60,7 @@ function Home() {
 
 
   });
+  
   if (loading ) {
     console.log("loading");
 
@@ -83,12 +87,12 @@ function Home() {
 
               <div className="flex flex-col gap-y-9 ">
                 <div className=" flex flex-col  w-[100px] h-[100px] rounded-full mx-auto object-cover cursor-pointer bg-[url(assets/profile.jpg)] bg-center bg-no-repeat bg-cover"></div>
-                <div className="relative  after:content-[''] after:absolute after:top-0 after:left-[25px] after:rounded-l-[20px] py-5 after:bg-white  after:w-full after:h-full after:z-[-1] z-[1]  cursor-pointer before:content-[''] before:absolute before:top-0 before:right-0 before:w-[8px] before:h-full before:rounded-l-2xl before:shadow-2xl  before:bg-black before:z-[1] ">
-                  <GrHomeRounded className='size-9  mx-auto '   />
+                <div className="relative  after:content-[''] after:absolute after:top-0 after:right-[5px] after:rounded-l-[20px] py-5 after:bg-black after:w-[8px] after:h-full after:z-[2] z-[1]  cursor-pointer before:content-[''] before:absolute before:top-0 before:left-[26px] before:w-[83%] before:h-full before:rounded-l-2xl before:shadow-2xl group: hover:before:bg-white before:z-[-1] hover:left-0  hover:top-0 transition-all duration-500 left-0 text-white   hover:text-black">
+                  <GrHomeRounded className='size-9  mx-auto  '   />
                 </div>
 
                 <div className=" relative  after:content-[''] after:absolute after:top-0 after:left-[25px] after:rounded-l-[20px] py-5 after:bg-white  after:w-full after:h-full after:z-[-1] z-[1]  cursor-pointer before:content-[''] before:absolute before:top-0 before:right-0 before:w-[8px] before:h-full before:rounded-l-2xl before:shadow-2xl  before:bg-black before:z-[1]">
-                  <FaCommentDots className='size-9  mx-auto ' />
+                  <FaCommentDots onClick={handlemessege} className='size-9  mx-auto ' />
                 
                 </div>
                 <div className=" relative  after:content-[''] after:absolute after:top-0 after:left-[25px] after:rounded-l-[20px] py-5 after:bg-white  after:w-full after:h-full after:z-[-1] z-[1]  cursor-pointer before:content-[''] before:absolute before:top-0 before:right-0 before:w-[8px] before:h-full before:rounded-l-2xl before:shadow-2xl  before:bg-black before:z-[1] ">
@@ -96,7 +100,7 @@ function Home() {
                  
                 </div>
               </div>
-              <div className="relative  after:content-[''] after:absolute after:top-0 after:left-[25px] after:rounded-l-[20px] py-5 after:bg-white  after:w-full after:h-full after:z-[-1] z-[1]  cursor-pointer before:content-[''] before:absolute before:top-0 before:right-0 before:w-[8px] before:h-full before:rounded-l-2xl before:shadow-2xl  before:bg-black before:z-[1]">
+              <div className=" text-white">
                 <ImExit onClick={handelExit} className=' size-10  mx-auto' />
               </div>
             </div>
