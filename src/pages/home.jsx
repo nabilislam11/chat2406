@@ -11,27 +11,30 @@ import FriendRequest from '../components/Layout/Friend request/FriendRequest';
 import MyGroups from '../components/My Groups/MyGroups';
 import BlockList from '../components/Block list/BlockList';
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { signOut } from "firebase/auth";
 import { InfinitySpin } from 'react-loader-spinner';
+import { userLoginfo } from '../slice/userSlice';
 function Home() {
   const [loading, setloading] = useState(true);
   const [verify, setVerify] = useState(false)
   const auth = getAuth();
   const data = useSelector(state => state.userinfo.value)
   const navigate = useNavigate()
-  const handlemessege =()=>{
-    
+  const dispatch =useDispatch();
+  const handlemessege = () => {
+
+    navigate("/messege")
   }
   const handelExit = () => {
     setloading(true)
     signOut(auth).then(() => {
-
+      localStorage.removeItem("userLoginfo")
+      dispatch(userLoginfo(null))
       navigate("/registration")
-
 
     }).catch((error) => {
       console.log(error);
@@ -46,7 +49,7 @@ function Home() {
       navigate("/login")
 
     }
-    }, [] )
+  }, [])
 
   onAuthStateChanged(auth, (user) => {
     console.log(user);
@@ -60,15 +63,15 @@ function Home() {
 
 
   });
-  
-  if (loading ) {
+
+  if (loading) {
     console.log("loading");
 
     return (
       <div className="flex justify-center w-full items-center h-screen  ">
         <InfinitySpin
           size={500}
-           visible={true}
+          visible={true}
           color="#000"
           ariaLabel="infinity-spin-loading"
         />
@@ -83,22 +86,48 @@ function Home() {
       {
         verify ?
           <div className="flex h-[95vh] mt-[20px]  ">
-            <div className="w-[10.96%] rounded-[20px]  ml-[35px] flex flex-col  justify-between  py-[38px]   mr-[22px] bg-black">
+            <div className="w-[10.96%] rounded-[20px]  ml-[35px] flex flex-col  justify-between  py-[38px] overflow-hidden  mr-[22px] bg-black">
 
               <div className="flex flex-col gap-y-9 ">
-                <div className=" flex flex-col  w-[100px] h-[100px] rounded-full mx-auto object-cover cursor-pointer bg-[url(assets/profile.jpg)] bg-center bg-no-repeat bg-cover"></div>
-                <div className="relative  after:content-[''] after:absolute after:top-0 after:right-[5px] after:rounded-l-[20px] py-5 after:bg-black after:w-[8px] after:h-full after:z-[2] z-[1]  cursor-pointer before:content-[''] before:absolute before:top-0 before:left-[26px] before:w-[83%] before:h-full before:rounded-l-2xl before:shadow-2xl group: hover:before:bg-white before:z-[-1] hover:left-0  hover:top-0 transition-all duration-500 left-0 text-white   hover:text-black">
-                  <GrHomeRounded className='size-9  mx-auto  '   />
+                <div className=" flex flex-col  w-[100px] h-[100px] rounded-full mx-auto object-cover cursor-pointer bg-[url(assets/profile.jpg)] bg-center bg-no-repeat bg-cover  "></div>
+                {/* <div className="relative w-full group  bg-transparent cursor-pointer text-white hover:z-[0] py-[23px] ml-[26px] rounded-l-[20px] duration-300 ease-in-out hover:bg-white hover:text-black overflow-hidden "> 
+                  <GrHomeRounded className='size-9  mx-auto z-30   '   />
+                  <div className="absolute w-full h-[82px] bg-[#1e1e1e]  top-0 right-8 rounded-l-[15px] duration-500 transition-transform group-hover:translate-x-[98%] group-hover:z-0 shadow-[-2px_0px_4px_0px_rgba(0,0,0,0.25)] overflow-hidden   "></div>
+                </div> */}
+
+                <div className="relative w-full group bg-transparent cursor-pointer text-black hover:text-black py-[23px] ml-[26px] rounded-l-[20px] duration-300 ease-in-out hover:bg-white overflow-hidden">
+
+                  <div className="relative    z-30 ">
+                     <GrHomeRounded  className="size-9  ml-[70px] transition-colors duration-300 group-hover:text-black text-white" />
+                  </div>
+
+
+                  <div className="absolute w-full h-[82px] bg-black top-0 right-8 rounded-l-[15px] duration-500 transition-transform group-hover:translate-x-[98%] z-10 shadow-[-2px_0px_4px_0px_rgba(0,0,0,0.25)]"></div>
                 </div>
 
-                <div className=" relative  after:content-[''] after:absolute after:top-0 after:left-[25px] after:rounded-l-[20px] py-5 after:bg-white  after:w-full after:h-full after:z-[-1] z-[1]  cursor-pointer before:content-[''] before:absolute before:top-0 before:right-0 before:w-[8px] before:h-full before:rounded-l-2xl before:shadow-2xl  before:bg-black before:z-[1]">
-                  <FaCommentDots onClick={handlemessege} className='size-9  mx-auto ' />
-                
+                <div className="relative w-full group bg-transparent cursor-pointer text-black hover:text-black py-[23px] ml-[26px] rounded-l-[20px] duration-300 ease-in-out hover:bg-white overflow-hidden">
+
+                  <div className="relative    z-30 ">
+                     <FaCommentDots  className="size-9    ml-[70px] transition-colors duration-300 group-hover:text-black text-white" />
+                  </div>
+
+
+                  <div className="absolute w-full h-[82px] bg-black top-0 right-8 rounded-l-[15px] duration-500 transition-transform group-hover:translate-x-[98%] z-10 shadow-[-2px_0px_4px_0px_rgba(0,0,0,0.25)]"></div>
                 </div>
-                <div className=" relative  after:content-[''] after:absolute after:top-0 after:left-[25px] after:rounded-l-[20px] py-5 after:bg-white  after:w-full after:h-full after:z-[-1] z-[1]  cursor-pointer before:content-[''] before:absolute before:top-0 before:right-0 before:w-[8px] before:h-full before:rounded-l-2xl before:shadow-2xl  before:bg-black before:z-[1] ">
-                  <AiTwotoneSetting className='size-9  mx-auto' />
-                 
+
+                <div className="relative w-full group bg-transparent cursor-pointer text-black hover:text-black py-[23px] ml-[26px] rounded-l-[20px] duration-300 ease-in-out hover:bg-white overflow-hidden">
+
+                  <div className="relative    z-30 ">
+                     <AiTwotoneSetting  className="size-9  ml-[70px]  transition-colors duration-300 group-hover:text-black text-white" />
+                  </div>
+
+
+                  <div className="absolute w-full h-[82px] bg-black top-0 right-8 rounded-l-[15px] duration-500 transition-transform group-hover:translate-x-[98%] z-10 shadow-[-2px_0px_4px_0px_rgba(0,0,0,0.25)]"></div>
                 </div>
+
+
+
+          
               </div>
               <div className=" text-white">
                 <ImExit onClick={handelExit} className=' size-10  mx-auto' />
