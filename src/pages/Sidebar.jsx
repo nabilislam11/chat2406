@@ -6,7 +6,7 @@ import { ImExit } from "react-icons/im";
 import { getAuth, signOut } from "firebase/auth";
 import { InfinitySpin } from 'react-loader-spinner';
 
-const Navigationbar = () => {
+const Sidebar = () => {
     const navigate = useNavigate()
   const auth = getAuth();
 
@@ -50,4 +50,4 @@ const Navigationbar = () => {
   )
 }
 
-export default Navigationbar
+export default Sidebar

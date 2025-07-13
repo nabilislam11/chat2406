@@ -19,6 +19,8 @@ import { signOut } from "firebase/auth";
 import { InfinitySpin } from 'react-loader-spinner';
 import { userLoginfo } from '../slice/userSlice';
 function Home() {
+  const userdata =useSelector(state=>state.userinfo.value)
+  
   const [loading, setloading] = useState(true);
   const [verify, setVerify] = useState(false)
   const auth = getAuth();
@@ -29,6 +31,7 @@ function Home() {
 
     navigate("/messege")
   }
+  // exitbutton
   const handelExit = () => {
     setloading(true)
     signOut(auth).then(() => {
@@ -45,7 +48,6 @@ function Home() {
   console.log(data, "data");
   useEffect(() => {
     if (!data) {
-
       navigate("/login")
 
     }
@@ -90,6 +92,7 @@ function Home() {
 
               <div className="flex flex-col gap-y-9 ">
                 <div className=" flex flex-col  w-[100px] h-[100px] rounded-full mx-auto object-cover cursor-pointer bg-[url(assets/profile.jpg)] bg-center bg-no-repeat bg-cover  "></div>
+                <p className='text-white text-center items-center font-bold' >{userdata.user.displayName}</p>
                 {/* <div className="relative w-full group  bg-transparent cursor-pointer text-white hover:z-[0] py-[23px] ml-[26px] rounded-l-[20px] duration-300 ease-in-out hover:bg-white hover:text-black overflow-hidden "> 
                   <GrHomeRounded className='size-9  mx-auto z-30   '   />
                   <div className="absolute w-full h-[82px] bg-[#1e1e1e]  top-0 right-8 rounded-l-[15px] duration-500 transition-transform group-hover:translate-x-[98%] group-hover:z-0 shadow-[-2px_0px_4px_0px_rgba(0,0,0,0.25)] overflow-hidden   "></div>
@@ -139,7 +142,7 @@ function Home() {
 
               <Grouplist></Grouplist>
               <Friends></Friends>
-              <Userlist></Userlist>
+              <Userlist userdata = {userdata}></Userlist>
               <FriendRequest></FriendRequest>
               <MyGroups></MyGroups>
               <BlockList></BlockList>

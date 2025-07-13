@@ -1,4 +1,4 @@
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from "firebase/auth";
 import React from 'react'
 import { useState } from 'react'
 import registration from '../assets/registration.png'
@@ -7,6 +7,7 @@ import { IoMdEyeOff } from "react-icons/io";
 import { Link, useNavigate } from "react-router";
 import { ToastContainer, toast } from 'react-toastify';
 import { InfinitySpin } from 'react-loader-spinner'
+import { getDatabase, ref, set } from "firebase/database";
 
 const Registration = () => {
   const auth = getAuth();
@@ -16,6 +17,7 @@ const Registration = () => {
   const [password, setPassword] = useState("")
   const [show, setshow] = useState(false)
 
+  const db = getDatabase();
   const [emailErr, setEmailErr] = useState("")
   const [fullNamErr, setFullnameerr] = useState("")
   const [passwordErr, setPassworderr] = useState("")
@@ -45,7 +47,7 @@ const Registration = () => {
     if (!password) {
       setPassworderr("Enter your proper password");
     }
-   
+
 
     if (email && fullname && password) {
       setloading(true)
@@ -54,12 +56,24 @@ const Registration = () => {
           sendEmailVerification(auth.currentUser)
           toast.success("registration successfully done Please varify your email");
           setloading(false)
-          setTimeout(() => {
-            navigate("/login")
-          }, 2000);
-          setEmail("")
-          setFullname("")
-          setPassword("")
+          updateProfile(auth.currentUser, {
+            displayName: fullname
+          }).then(() => {
+            console.log(user, "user");
+
+            set(ref(db, 'users/' + user.user.uid), {
+              username: user.user.displayName,
+              email: user.user.email,
+
+            });
+            setTimeout(() => {
+              navigate("/login")
+            }, 2000);
+            setEmail("")
+            setFullname("")
+            setPassword("")
+          })
+
         })
         .catch((error) => {
           console.log(error);
