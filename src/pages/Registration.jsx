@@ -62,7 +62,7 @@ const Registration = () => {
             console.log(user, "user");
 
             set(ref(db, 'users/' + user.user.uid), {
-              username: user.user.displayName,
+              username: user.user?.displayName,
               email: user.user.email,
 
             });

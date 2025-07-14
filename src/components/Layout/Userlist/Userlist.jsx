@@ -32,6 +32,8 @@ const Userlist = () => {
             setUserlist(arr)
         });
     }, [])
+    console.log(userdata);
+    
     const handleRequest = (item) => {
 
         set(ref(db, 'friendrequest/'), {
