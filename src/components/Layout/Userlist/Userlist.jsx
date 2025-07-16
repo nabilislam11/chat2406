@@ -4,7 +4,7 @@ import { BsFillPlusSquareFill } from "react-icons/bs";
 import user1 from "../../../assets/user1.jpg"
 import { getDatabase, ref, onValue, set, push } from "firebase/database";
 import { useSelector } from 'react-redux';
-
+import { FaMinusCircle } from "react-icons/fa";
 const Userlist = () => {
     const db = getDatabase();
     const userdata = useSelector(state => state.userinfo.value)
@@ -25,14 +25,33 @@ const Userlist = () => {
                 }
 
 
-
-
-
+                
+                
+                
             })
             setUserlist(arr)
         });
     }, [])
-    console.log(userdata);
+    const [friendrequestlist,setFriendrequestlist] =useState([])
+      useEffect(() => {
+              const friendrequestRef = ref(db, 'friendrequest/');
+              onValue(friendrequestRef, (snapshot) => {
+                  let arr = []
+                  snapshot.forEach((item) => {
+
+                   arr.push(item.val().receiverid +item.val().senderid);
+                    
+                  })
+                 setFriendrequestlist(arr)
+        
+                 
+              });
+          }, [])
+          console.log(friendrequestlist);
+          
+
+          
+          
     
     const handleRequest = (item) => {
 
@@ -44,6 +63,7 @@ const Userlist = () => {
        });
     }
 
+    
     return (
         <div className='xl:w-[28%] w-full   h-[50%] rounded-[20px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] font-secondary px-[28px] py-[20px] ' >
             <div className="flex justify-between">
@@ -68,7 +88,13 @@ const Userlist = () => {
                                 </div>
 
                             </div>
+                            {
+                                friendrequestlist.includes(userdata.user.uid+item.userid) ||
+                                friendrequestlist.includes(item.userid+userdata.user.uid) ?
+                                 <button className='pr-[20px] '> <FaMinusCircle size={25} /></button>
+                                 :
                             <button onClick={() => handleRequest(item)} className='pr-[20px] '> <BsFillPlusSquareFill size={25} /></button>
+                            }
                         </div>
                     ))
                 }

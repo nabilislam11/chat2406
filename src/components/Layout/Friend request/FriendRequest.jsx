@@ -55,7 +55,7 @@ const FriendRequest = () => {
                   <p className='font-semibold font-secondary text-[14px]  text-black '  >{item.msg}</p>
                 </div>
               </div>
-              <button className='font-semibold font-secondary text-[20px] px-[7px] mr-[62px] bg-black text-white '  >Accept</button>
+              <button className='font-semibold font-secondary text-[20px] px-[7px] mr-[62px] bg-black text-white ' onClick={()=> handleAccepet(item)} >Accept</button>
             </div>
           ))
           }
