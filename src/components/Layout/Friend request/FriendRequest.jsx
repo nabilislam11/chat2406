@@ -1,46 +1,40 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { BsThreeDotsVertical } from "react-icons/bs";
 import request from "../../../assets/request.jpg"
 import request1 from "../../../assets/request1.jpg"
 import request2 from "../../../assets/request2.jpg"
 import request3 from "../../../assets/request3.jpg"
+import { getDatabase, onValue, ref } from 'firebase/database';
+import { useSelector } from 'react-redux';
 
 
 const FriendRequest = () => {
-  const FriendRequest =[  
-    {
-      img:request,
-      fullName:"Raghav",
-      msg:"Dinner?",
-    },
-    {
-      img:request1,
-      fullName:"Raghav",
-      msg:"Dinner?",
-    },
-    {
-      img:request2,
-      fullName:"Raghav",
-      msg:"Dinner?",
-    },
-    {
-      img:request3 ,
-      fullName:"Raghav",
-      msg:"Dinner?",
-    },
-    {
-      img:request,
-      fullName:"Raghav",
-      msg:"Dinner?",
-    },
-    {
-      img:request,
-      fullName:"Raghav",
-      msg:"Dinner?",
-    },
+  const db = getDatabase();
+   const userdata =useSelector(state => state.userinfo.value)
+  const [friendrequestlist,setFriendrequestlist] =useState([])
+  useEffect(() => {
+          const friendrequestRef = ref(db, 'friendrequest/');
+          onValue(friendrequestRef, (snapshot) => {
+              let arr = []
+              snapshot.forEach((item) => {
+                console.log(item.val(),"val");
+                console.log(userdata,"userdata");
+                
+                
+                if (userdata.user.uid == item.val().receiverid) {
+                  
+                  arr.push(item.val());
+                 
+                } 
+                console.log(arr,"arr");
+              })
+             setFriendrequestlist(arr)
+          });
+      }, [])
 
 
-  ]
+  console.log(friendrequestlist);
+  
   
   return (
     <div className='w-[38%] h-[49%] rounded-[20px]  pt-[10px] pb-[20px] px-[20px] font-secondary '>
@@ -50,15 +44,15 @@ const FriendRequest = () => {
          </div>
          <div className=" overflow-y-scroll h-[89%] ">
           {
-          FriendRequest.map((request,i)=>(
+          friendrequestlist.map((item)=>(
             <div className="flex justify-between items-center py-[13px] border-b-2 border-gray-300 ">
               <div className="flex justify-start items-center gap-x-[14px]">
-                <div className="w-[70px] h-[70px] rounded-full bg-cover bg-center bg-no-repeat "style={{backgroundImage: `url(${request.img})`}}></div>
+                <div className="w-[70px] h-[70px] rounded-full bg-cover bg-center bg-no-repeat "style={{backgroundImage: `url(${item.img})`}}></div>
                 <div className="">
                   <h3 className='font-semibold font-secondary text-[18px]  text-black '>
-                    {request.fullName}
+                    {item.sendername}
                   </h3>
-                  <p className='font-semibold font-secondary text-[14px]  text-black '  >{request.msg}</p>
+                  <p className='font-semibold font-secondary text-[14px]  text-black '  >{item.msg}</p>
                 </div>
               </div>
               <button className='font-semibold font-secondary text-[20px] px-[7px] mr-[62px] bg-black text-white '  >Accept</button>

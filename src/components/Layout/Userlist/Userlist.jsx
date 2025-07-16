@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { BsFillPlusSquareFill } from "react-icons/bs";
 import user1 from "../../../assets/user1.jpg"
-import { getDatabase, ref, onValue, set } from "firebase/database";
+import { getDatabase, ref, onValue, set, push } from "firebase/database";
 import { useSelector } from 'react-redux';
 
 const Userlist = () => {
@@ -36,11 +36,11 @@ const Userlist = () => {
     
     const handleRequest = (item) => {
 
-        set(ref(db, 'friendrequest/'), {
+        set(push(ref(db, 'friendrequest/')), {
             senderid:userdata.user.uid,
             sendername:userdata.user.displayName,
-            receverid:item.userid,
-            recevername:item.username,
+            receiverid:item.userid,
+            receivername:item.username,
        });
     }
 

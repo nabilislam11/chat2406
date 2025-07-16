@@ -49,7 +49,7 @@ const Grouplist = () => {
           <Searchinput></Searchinput>
         <h2 className='font-semibold font-secondary text-[20px] text-black mt-[43px] ' >Groups List</h2>
        
-        <div className="overflow-y-scroll  h-[70%] pt-[43px]">
+        <div className="overflow-y-scroll   h-[70%] pt-[43px]">
             {
                 groups.map((group,i)=>(
                         <div key={i} className=" flex py-[13px] items-center justify-between border-b-2 border-gray-300 ">
