@@ -9,6 +9,7 @@ const Userlist = () => {
     const db = getDatabase();
     const userdata = useSelector(state => state.userinfo.value)
 
+
     const [userlist, setUserlist] = useState([])
 
     useEffect(() => {
@@ -23,11 +24,7 @@ const Userlist = () => {
                     arr.push({ ...item.val(), userid: item.key });
 
                 }
-
-
-                
-                
-                
+              
             })
             setUserlist(arr)
         });
@@ -86,7 +83,6 @@ const Userlist = () => {
                                         {item.email}
                                     </p>
                                 </div>
-
                             </div>
                             {
                                 friendrequestlist.includes(userdata.user.uid+item.userid) ||

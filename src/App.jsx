@@ -3,8 +3,11 @@ import {
 import './App.css'
 import Registration from './pages/Registration'
 import Login from "./pages/Login";
-import Home from './pages/Home';
+
 import Massege from "./pages/Messege";
+import Home from "./pages/home";
+import RootLayout from "./pages/RootLayout";
+import Messege from "./pages/Messege";
 const router =createBrowserRouter([
   {
     path: "/registration",
@@ -15,12 +18,21 @@ const router =createBrowserRouter([
     element :<Login/>
   },
   {
-    path: "/home",
-    element :<Home/>,
-  },
-  {
     path: "/messege",
     element :<Massege/>,
+  },
+  {
+    path: "/",
+    element :<RootLayout/>,
+    children :[{
+      index :true,
+      element: <Home/>,
+    },
+    {
+      path: "/messege",
+      element: <Messege/>,
+    },
+  ] 
   },
   
  

@@ -5,6 +5,7 @@ import { AiTwotoneSetting } from "react-icons/ai";
 import { ImExit } from "react-icons/im";
 import { getAuth, signOut } from "firebase/auth";
 import { InfinitySpin } from 'react-loader-spinner';
+import { useNavigate } from 'react-router';
 
 const Sidebar = () => {
     const navigate = useNavigate()

@@ -1,10 +1,10 @@
 import React from 'react'
 import { BsThreeDotsVertical } from "react-icons/bs";
-import group1 from "../../assets/group1.png"
-import group2 from "../../assets/group2.png"
-import group3 from "../../assets/group3.png"
-import group4 from "../../assets/group4.png"
-import group5 from "../../assets/group5.jpg"
+import group1 from "../../../assets/group1.png"
+import group2 from "../../../assets/group1.png"
+import group3 from "../../../assets/group1.png"
+import group4 from "../../../assets/group1.png"
+import group5 from "../../../assets/group1.png"
 const MyGroups = () => {
     const  MyGroups = [
         {
