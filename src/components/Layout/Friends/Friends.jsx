@@ -35,8 +35,6 @@ const Friends = () => {
 //     setfriendList(arr);
 //   });
 // }, [userdata?.uid]);
-
-
     useEffect(() => {
         const friendRef = ref(db, 'friend/');
         onValue(friendRef, (snapshot) => {
@@ -51,9 +49,6 @@ const Friends = () => {
             setfriendList(arr)
         });
     }, [])
-    console.log(friendlist);
-
-
     return (
 
         <div className='xl:w-[28%] w-full h-[49%] rounded-[20px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] font-secondary px-[28px] py-[20px] ' >
@@ -79,11 +74,8 @@ const Friends = () => {
                                         hey..
                                     </p>
                                 </div>
-
                             </div>
-                            <p className='font-medium  font-secondary text-[10px]  text-black/50 pr-[10px]'>
-                                11:30pm
-                            </p>
+                            <button className='font-semibold font-secondary text-[20px] px-[7px] mr-[62px] bg-black text-white rounded-[7px] '>Friend</button>
                         </div>
 
                     ))

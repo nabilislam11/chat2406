@@ -5,12 +5,12 @@ import user1 from "../../../assets/user1.jpg"
 import { getDatabase, ref, onValue, set, push } from "firebase/database";
 import { useSelector } from 'react-redux';
 import { FaMinusCircle } from "react-icons/fa";
+import { GiThreeFriends } from "react-icons/gi";
 const Userlist = () => {
     const db = getDatabase();
     const userdata = useSelector(state => state.userinfo.value)
-
-
     const [userlist, setUserlist] = useState([])
+     const [friendlist, setfriendList] = useState([])
 
     useEffect(() => {
         const userRef = ref(db, 'users/');
@@ -44,12 +44,7 @@ const Userlist = () => {
                  
               });
           }, [])
-          console.log(friendrequestlist);
-          
 
-          
-          
-    
     const handleRequest = (item) => {
 
         set(push(ref(db, 'friendrequest/')), {
@@ -59,6 +54,18 @@ const Userlist = () => {
             receivername:item.username,
        });
     }
+       useEffect(() => {
+        const friendRef = ref(db, 'friend/');
+        onValue(friendRef, (snapshot) => {
+            let arr = [];
+            snapshot.forEach((item) => {
+                {
+                        arr.push(userdata.user.uid == item.val().receiverid);
+                    }
+            }),
+            setfriendList(arr)
+        });
+    }, [])
 
     
     return (
@@ -85,11 +92,22 @@ const Userlist = () => {
                                 </div>
                             </div>
                             {
-                                friendrequestlist.includes(userdata.user.uid+item.userid) ||
-                                friendrequestlist.includes(item.userid+userdata.user.uid) ?
-                                 <button className='pr-[20px] '> <FaMinusCircle size={25} /></button>
+                                
+                                friendlist.includes(userdata.user.uid+item.userid) ||
+                                friendlist.includes(item.userid+userdata.user.uid) ?(
+
+                                    <button className='pr-[20px] '> <GiThreeFriends /></button>
+                                )
                                  :
-                            <button onClick={() => handleRequest(item)} className='pr-[20px] '> <BsFillPlusSquareFill size={25} /></button>
+                                friendrequestlist.includes(userdata.user.uid+item.userid) ||
+                                
+                                friendrequestlist.includes(item.userid+userdata.user.uid) ?(
+                                    <button className='pr-[20px] '> <FaMinusCircle size={25} /></button>
+                                )
+                                 :(
+
+                                     <button onClick={() => handleRequest(item)} className='pr-[20px] '> <BsFillPlusSquareFill size={25} /></button>
+                                 )
                             }
                         </div>
                     ))

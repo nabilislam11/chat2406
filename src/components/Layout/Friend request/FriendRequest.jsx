@@ -29,8 +29,7 @@ const FriendRequest = () => {
       setFriendrequestlist(arr)
     });
   }, [])
-
-
+  
   console.log(friendrequestlist);
   const handleAccepet = (item) => {
     console.log(item);
@@ -44,7 +43,7 @@ const FriendRequest = () => {
 
 
   }
-
+  
   return (
     <div className='w-[38%] h-[49%] rounded-[20px]  pt-[10px] pb-[20px] px-[20px] font-secondary '>
       <div className=" flex justify-between ">
