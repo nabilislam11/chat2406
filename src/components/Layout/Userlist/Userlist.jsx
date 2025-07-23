@@ -10,7 +10,7 @@ const Userlist = () => {
     const db = getDatabase();
     const userdata = useSelector(state => state.userinfo.value)
     const [userlist, setUserlist] = useState([])
-     const [friendlist, setfriendList] = useState([])
+    const [friendlist, setfriendList] = useState([])
 
     useEffect(() => {
         const userRef = ref(db, 'users/');
@@ -24,50 +24,50 @@ const Userlist = () => {
                     arr.push({ ...item.val(), userid: item.key });
 
                 }
-              
+
             })
             setUserlist(arr)
         });
     }, [])
-    const [friendrequestlist,setFriendrequestlist] =useState([])
-      useEffect(() => {
-              const friendrequestRef = ref(db, 'friendrequest/');
-              onValue(friendrequestRef, (snapshot) => {
-                  let arr = []
-                  snapshot.forEach((item) => {
+    const [friendrequestlist, setFriendrequestlist] = useState([])
+    useEffect(() => {
+        const friendrequestRef = ref(db, 'friendrequest/');
+        onValue(friendrequestRef, (snapshot) => {
+            let arr = []
+            snapshot.forEach((item) => {
 
-                   arr.push(item.val().receiverid +item.val().senderid);
-                    
-                  })
-                 setFriendrequestlist(arr)
-        
-                 
-              });
-          }, [])
+                arr.push(item.val().receiverid + item.val().senderid);
+
+            })
+            setFriendrequestlist(arr)
+
+
+        });
+    }, [])
 
     const handleRequest = (item) => {
-
         set(push(ref(db, 'friendrequest/')), {
-            senderid:userdata.user.uid,
-            sendername:userdata.user.displayName,
-            receiverid:item.userid,
-            receivername:item.username,
-       });
+            senderid: userdata.user.uid,
+            sendername: userdata.user.displayName,
+            receiverid: item.userid,
+            receivername: item.username,
+        });
     }
-       useEffect(() => {
+    useEffect(() => {
         const friendRef = ref(db, 'friend/');
         onValue(friendRef, (snapshot) => {
             let arr = [];
             snapshot.forEach((item) => {
                 {
-                        arr.push(userdata.user.uid == item.val().receiverid);
-                    }
+                    arr.push(item.val().receiverid + item.val().senderid);
+                }
             }),
-            setfriendList(arr)
+                setfriendList(arr)
         });
     }, [])
+    console.log(friendlist, "heyyyy ");
 
-    
+
     return (
         <div className='xl:w-[28%] w-full   h-[50%] rounded-[20px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] font-secondary px-[28px] py-[20px] ' >
             <div className="flex justify-between">
@@ -92,22 +92,22 @@ const Userlist = () => {
                                 </div>
                             </div>
                             {
-                                
-                                friendlist.includes(userdata.user.uid+item.userid) ||
-                                friendlist.includes(item.userid+userdata.user.uid) ?(
 
-                                    <button className='pr-[20px] '> <GiThreeFriends /></button>
-                                )
-                                 :
-                                friendrequestlist.includes(userdata.user.uid+item.userid) ||
-                                
-                                friendrequestlist.includes(item.userid+userdata.user.uid) ?(
-                                    <button className='pr-[20px] '> <FaMinusCircle size={25} /></button>
-                                )
-                                 :(
+                                friendlist.includes(userdata.user.uid + item.userid) ||
+                                    friendlist.includes(item.userid + userdata.user.uid) ? (
 
-                                     <button onClick={() => handleRequest(item)} className='pr-[20px] '> <BsFillPlusSquareFill size={25} /></button>
-                                 )
+                                    <button className='pr-[20px] '> Friend</button>
+                                )
+                                    :
+                                    friendrequestlist.includes(userdata.user.uid + item.userid) ||
+
+                                        friendrequestlist.includes(item.userid + userdata.user.uid) ? (
+                                        <button className='pr-[20px] '> <FaMinusCircle size={25} /></button>
+                                    )
+                                        : (
+
+                                            <button onClick={() => handleRequest(item)} className='pr-[20px] '> <BsFillPlusSquareFill size={25} /></button>
+                                        )
                             }
                         </div>
                     ))
