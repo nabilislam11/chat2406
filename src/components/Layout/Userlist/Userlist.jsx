@@ -5,7 +5,7 @@ import user1 from "../../../assets/user1.jpg"
 import { getDatabase, ref, onValue, set, push } from "firebase/database";
 import { useSelector } from 'react-redux';
 import { FaMinusCircle } from "react-icons/fa";
-import { GiThreeFriends } from "react-icons/gi";
+import { IoPeopleSharp } from "react-icons/io5";
 const Userlist = () => {
     const db = getDatabase();
     const userdata = useSelector(state => state.userinfo.value)
@@ -65,9 +65,6 @@ const Userlist = () => {
                 setfriendList(arr)
         });
     }, [])
-    console.log(friendlist, "heyyyy ");
-
-
     return (
         <div className='xl:w-[28%] w-full   h-[50%] rounded-[20px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] font-secondary px-[28px] py-[20px] ' >
             <div className="flex justify-between">
@@ -96,17 +93,17 @@ const Userlist = () => {
                                 friendlist.includes(userdata.user.uid + item.userid) ||
                                     friendlist.includes(item.userid + userdata.user.uid) ? (
 
-                                    <button className='pr-[20px] '> Friend</button>
+                                    <button className='pr-[20px] '> <IoPeopleSharp size={25} /></button>
                                 )
                                     :
                                     friendrequestlist.includes(userdata.user.uid + item.userid) ||
 
                                         friendrequestlist.includes(item.userid + userdata.user.uid) ? (
-                                        <button className='pr-[20px] '> <FaMinusCircle size={25} /></button>
+                                        <button className='pr-[20px] cursor-pointer '> <FaMinusCircle size={25} /></button>
                                     )
                                         : (
 
-                                            <button onClick={() => handleRequest(item)} className='pr-[20px] '> <BsFillPlusSquareFill size={25} /></button>
+                                            <button onClick={() => handleRequest(item)} className='pr-[20px] cursor-pointer '> <BsFillPlusSquareFill size={25} /></button>
                                         )
                             }
                         </div>

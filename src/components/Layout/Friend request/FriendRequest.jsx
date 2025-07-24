@@ -17,12 +17,8 @@ const FriendRequest = () => {
     onValue(friendrequestRef, (snapshot) => {
       let arr = []
       snapshot.forEach((item) => {
-        console.log(item.val(), "val");
-        console.log(userdata, "userdata");
-
 
         if (userdata.user.uid == item.val().receiverid) {
-
           arr.push({...item.val(),id : item.key});
         }
       })
@@ -32,7 +28,6 @@ const FriendRequest = () => {
   
   console.log(friendrequestlist);
   const handleAccepet = (item) => {
-    console.log(item);
     set(push(ref(db, 'friend/' )), {
       ...item
 

@@ -34,7 +34,6 @@ const RootLayout = () => {
       navigate("/registration")
 
     }).catch((error) => {
-      console.log(error);
       setloading(false)
 
     });
@@ -48,7 +47,6 @@ const RootLayout = () => {
   }, [])
 
   onAuthStateChanged(auth, (user) => {
-    console.log(user);
     if (user) {
 
       if (user.emailVerified) {
@@ -61,8 +59,6 @@ const RootLayout = () => {
   });
 
   if (loading) {
-    console.log("loading");
-
     return (
       <div className="flex justify-center w-full items-center h-screen  ">
         <InfinitySpin
