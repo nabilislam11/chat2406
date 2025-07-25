@@ -17,7 +17,6 @@ const Userlist = () => {
         onValue(userRef, (snapshot) => {
             let arr = []
             snapshot.forEach((item) => {
-                console.log(item.key, "value");
 
                 if (userdata.user.uid !== item.key) {
 
