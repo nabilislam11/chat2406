@@ -59,7 +59,7 @@ const Login = () => {
                 dispatch(userLoginfo(user.user) );
                 localStorage.setItem("userLoginfo",JSON.stringify(user) )
                 setTimeout(() => {
-                    navigate("/home")
+                    navigate("/")
 
                 }, 2000);
 
@@ -80,7 +80,7 @@ const Login = () => {
                 console.log(user);
                 console.log("success");
                 setTimeout(() => {
-                    navigate("/home")
+                    navigate("/")
 
                 }, 2000);
 
