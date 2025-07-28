@@ -53,6 +53,10 @@ const MyGroups = () => {
             remove(ref(db, 'joint/' + item.id));
         });
     };
+    const cancelHandle =(item) =>{
+         remove(ref(db, 'joint/' +item.id), {
+        });
+    }
 
     useEffect(() => {
         const memberRef = ref(db, 'member/');
@@ -75,7 +79,7 @@ const MyGroups = () => {
                     show ? (
                         <button
                       >
-                        <BsThreeDotsVertical onClick={jointRequestHandle} className='font-semibold text-[20px] text-red-500' />
+                        <BsThreeDotsVertical onClick={jointRequestHandle} className='font-semibold text-[20px] text-red-500 mr-2.5 mt-[5px] ' />
                         </button>
                     ) : (
                         <button
@@ -111,7 +115,7 @@ const MyGroups = () => {
                                     className='font-medium font-secondary text-[10px] text-black/50 pr-[10px]'>
                                     Accept
                                 </button>
-                                <button className='font-medium font-secondary text-[10px] text-red-500 pr-[10px]'>
+                                <button onClick={ ()=> cancelHandle(item)} className='font-medium font-secondary text-[10px] text-red-500 pr-[10px]'>
                                     Cancel
                                 </button>
                             </div>
