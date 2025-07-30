@@ -18,10 +18,6 @@ const router =createBrowserRouter([
     element :<Login/>
   },
   {
-    path: "/messege",
-    element :<Massege/>,
-  },
-  {
     path: "/",
     element :<RootLayout/>,
     children :[{

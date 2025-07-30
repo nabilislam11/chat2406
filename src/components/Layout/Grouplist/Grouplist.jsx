@@ -75,7 +75,6 @@ const Grouplist = () => {
   return (
     <>
       <div className='xl:w-[38%] w-full shadow-[0px_4px_4px_rgba(0,0,0,0.25)] h-[50%] rounded-[20px] px-[20px] font-poppins pt-[10px] pb-[20px]'>
-        <Searchinput />
         <div className="flex justify-between items-center">
           <h2 className='font-semibold font-secondary text-[20px] text-black mt-[43px]'>Groups List</h2>
           {

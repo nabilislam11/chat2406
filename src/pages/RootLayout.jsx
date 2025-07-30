@@ -6,7 +6,7 @@ import { AiTwotoneSetting } from "react-icons/ai";
 import { ImExit } from "react-icons/im";
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router';
+import { NavLink, useNavigate } from 'react-router';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { signOut } from "firebase/auth";
 import { InfinitySpin } from 'react-loader-spinner';
@@ -87,9 +87,9 @@ const RootLayout = () => {
 
                 <div className="relative w-full group bg-transparent cursor-pointer text-black hover:text-black py-[23px] ml-[26px] rounded-l-[20px] duration-300 ease-in-out hover:bg-white overflow-hidden">
 
-                  <div className="relative    z-30 ">
+                  <NavLink to="/" className="relative    z-30 ">
                      <GrHomeRounded  className="size-9  ml-[70px] transition-colors duration-300 group-hover:text-black text-white" />
-                  </div>
+                  </NavLink>
 
 
                   <div className="absolute w-full h-[82px] bg-black top-0 right-8 rounded-l-[15px] duration-500 transition-transform group-hover:translate-x-[98%] z-10 shadow-[-2px_0px_4px_0px_rgba(0,0,0,0.25)]"></div>
@@ -97,9 +97,9 @@ const RootLayout = () => {
 
                 <div className="relative w-full group bg-transparent cursor-pointer text-black hover:text-black py-[23px] ml-[26px] rounded-l-[20px] duration-300 ease-in-out hover:bg-white overflow-hidden">
 
-                  <div className="relative    z-30 ">
-                     <FaCommentDots  className="size-9    ml-[70px] transition-colors duration-300 group-hover:text-black text-white" />
-                  </div>
+                  <NavLink to="/messege" className="relative    z-30 ">
+                      < FaCommentDots  className="size-9    ml-[70px] transition-colors duration-300 group-hover:text-black text-white" />
+                  </NavLink>
 
 
                   <div className="absolute w-full h-[82px] bg-black top-0 right-8 rounded-l-[15px] duration-500 transition-transform group-hover:translate-x-[98%] z-10 shadow-[-2px_0px_4px_0px_rgba(0,0,0,0.25)]"></div>
@@ -107,9 +107,9 @@ const RootLayout = () => {
 
                 <div className="relative w-full group bg-transparent cursor-pointer text-black hover:text-black py-[23px] ml-[26px] rounded-l-[20px] duration-300 ease-in-out hover:bg-white overflow-hidden">
 
-                  <div className="relative    z-30 ">
+                  <NavLink to="settings" className="relative    z-30 ">
                      <AiTwotoneSetting  className="size-9  ml-[70px]  transition-colors duration-300 group-hover:text-black text-white" />
-                  </div>
+                  </NavLink>
 
 
                   <div className="absolute w-full h-[82px] bg-black top-0 right-8 rounded-l-[15px] duration-500 transition-transform group-hover:translate-x-[98%] z-10 shadow-[-2px_0px_4px_0px_rgba(0,0,0,0.25)]"></div>

@@ -44,7 +44,7 @@ const Messegelist = () => {
     
 
             </div>
-            <div className=" h-[80%] ">
+            <div className=" overflow-auto h-[80%] ">
                 {
                     MessegeList.map((messege, i) => (
                         <div key={i} className="flex items-center justify-between pt-[18px] pb-[13px] border-b-2 border-gray-300 ">

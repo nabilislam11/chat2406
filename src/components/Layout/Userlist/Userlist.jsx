@@ -6,6 +6,7 @@ import { getDatabase, ref, onValue, set, push } from "firebase/database";
 import { useSelector } from 'react-redux';
 import { FaMinusCircle } from "react-icons/fa";
 import { IoPeopleSharp } from "react-icons/io5";
+import Searchinput from '../Searchinput';
 const Userlist = () => {
     const db = getDatabase();
     const userdata = useSelector(state => state.userinfo.value)
@@ -65,13 +66,18 @@ const Userlist = () => {
         });
     }, [])
     return (
-        <div className='xl:w-[28%] w-full   h-[50%] rounded-[20px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] font-secondary px-[28px] py-[20px] ' >
+        <div className='flex flex-col xl:w-[28%] w-full   h-[50%] rounded-[20px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] font-secondary  px-[28px] py-[20px]'> 
+        <div className="">
+            <Searchinput />
+
+        </div>
+                <div className=' ' >
             <div className="flex justify-between">
                 <h2 className='font-semibold font-secondary text-[20px]  text-black'>User List</h2>
                 <BsThreeDotsVertical className=' font-semibold text-[20px] text-black ' />
 
             </div>
-            <div className="overflow-y-scroll h-[90%] ">
+            <div className="overflow-y-scroll h-[80%] ">
                 {
                     userlist.map((item) => (
                         <div className="flex items-center justify-between pt-[13px] border-b-2 border-gray-300 ">
@@ -111,6 +117,9 @@ const Userlist = () => {
             </div>
 
         </div>
+        
+        </div>
+
     )
 }
 
