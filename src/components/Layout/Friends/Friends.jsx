@@ -48,9 +48,7 @@ const Friends = () => {
             }),
                 setfriendList(arr)
         });
-    }, [])
-    console.log(friendlist,"friend collection");
-    
+    }, [])    
     const handleblock = (item) => {
         console.log(item,"item log");
         let blockerId = "";

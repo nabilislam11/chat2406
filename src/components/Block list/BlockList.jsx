@@ -23,7 +23,6 @@ const BlockList = () => {
                     arr.push(item.val())
                     
                 }
-                console.log(item.val(),"hereyy");
 
             })
             setblockList(arr)
