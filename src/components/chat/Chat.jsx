@@ -9,8 +9,7 @@ const Chat = () => {
     const db = getDatabase();
 
     const activedata = useSelector(state => state.activedata.value)
-    const [msg, setmsg] = useState([])
-    const [msgerr, setmsgErr] = useState([])
+    const [msg, setmsg] = useState("")
     const userdata = useSelector(state => state.userinfo.value)
     const [chatlist, setchatlist] = useState([])
 
@@ -40,8 +39,11 @@ const Chat = () => {
             whoreceivername: activedata.name,
             msg: msg,
         })
-         setmsgErr('')
+        setmsg("")
+
+        
     }
+     
     useEffect(() => {
         const singlemsgRef = ref(db, 'singlemsg/');
         onValue(singlemsgRef, (snapshot) => {
@@ -59,7 +61,7 @@ const Chat = () => {
     }, [activedata.id])
 
     return (
-        <div className='flex flex-col justify-between xl:w-[65%] w-full h-[86%] rounded-[20px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] font-secondary px-[28px] py-[20px] '>
+        <div className='flex flex-col justify-between xl:w-[65%] w-full h-[100%] rounded-[20px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)] font-secondary px-[28px] py-[20px] '>
             {/* profile__part */}
             <div className="flex justify-between items-center  pb-[15px] border-gray-300  border-b-2 mb-[65px]  ">
                 <div className=" flex justify-between items-center  gap-x-[33px] ">
@@ -74,7 +76,7 @@ const Chat = () => {
             </div>
 
 
-            <div className="  flex-1 flex-col">
+            <div className="  flex-1 flex-col overflow-auto h-[80%]">
                 {/* SENDER MSG  */}
                 {
                     chatlist.map((item) => (
@@ -104,10 +106,14 @@ const Chat = () => {
             </div>
 
 
-            <div className=" flex justify-between ">
+            <div className=" flex justify-between mt-2.5 ">
 
-                <input onChange={(e) =>setmsg(e.target.value)} type="text" className=' w-[750px] rounded-[20px] py-[15px] px-[15px] border-gray-300 border-1 bg-gray-300 text-black font-secondary' placeholder='Aa' />
-                <button onClick={() => handlemsgSend()} className='py-[15px] px-[20px]  bg-black text-white rounded-[7px]' ><FaLocationArrow /> </button>
+                <input onChange={(e) =>setmsg(e.target.value) } onKeyDown={(e)=>{
+                    if (e.key=== "Enter"){
+                         handlemsgSend()
+                    }
+                } } value={msg} type="text" className=' w-[750px] rounded-[20px] py-[15px] px-[15px] border-gray-300 border-1 bg-gray-300 text-black font-secondary' placeholder='Aa' />
+                <button onClick={() => handlemsgSend()  } className='py-[15px] px-[20px]  bg-black text-white rounded-[7px]' ><FaLocationArrow /> </button>
             </div>
 
 

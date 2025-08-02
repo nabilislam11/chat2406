@@ -23,6 +23,7 @@ const Grouplist = () => {
 
   const handleTagname = (e) => {
     setTagname(e.target.value)
+   
     setTagnameErr("")
   }
 
@@ -45,6 +46,8 @@ const Grouplist = () => {
         tagadmin: userdata.user.uid,
         tagadminName: userdata.user.displayName,
       });
+      setTagname("")
+      setTaglist("")
     }
   }
 
@@ -69,7 +72,7 @@ const Grouplist = () => {
       groupInfo: group.id,
       groupName: group.tagname,
     })
-    console.log(group, "data");
+ 
   }
 
   return (

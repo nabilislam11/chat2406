@@ -10,7 +10,7 @@ import Chat from '../components/chat/Chat';
 const Messege = () => {
   return (
                 
-            <div className="w-[90%] h-[88vh] flex flex-wrap justify-start gap-x-10 gap-y-9 ">   
+            <div className="w-[100%] h-[95vh] flex flex-wrap justify-start gap-x-10 gap-y-9 ">   
               <Messegelist></Messegelist>
               <Chat></Chat>
             </div>
