@@ -9,13 +9,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { signOut } from "firebase/auth";
-import { InfinitySpin } from 'react-loader-spinner';
+// import { InfinitySpin } from 'react-loader-spinner';
 import { userLoginfo } from '../slice/userSlice';
 import { Outlet } from 'react-router'
 
 
 const RootLayout = () => {
-  const [loading, setloading] = useState(true);
+  // const [loading, setloading] = useState(true);
   const [verify, setVerify] = useState(false)
   const auth = getAuth();
   const userdata = useSelector(state => state.userinfo.value)
@@ -27,14 +27,14 @@ const RootLayout = () => {
   }
   // exitbutton
   const handelExit = () => {
-    setloading(true)
+    // setloading(true)
     signOut(auth).then(() => {
       localStorage.removeItem("userLoginfo")
       dispatch(userLoginfo(null))
       navigate("/registration")
 
     }).catch((error) => {
-      setloading(false)
+      // setloading(false)
 
     });
   }
@@ -51,24 +51,24 @@ const RootLayout = () => {
       if (user.emailVerified) {
         setVerify(true)
       }
-      setloading(false)
+      // setloading(false)
     }
 
 
   });
 
-  if (loading) {
-    return (
-      <div className="flex justify-center w-full items-center h-screen  ">
-        <InfinitySpin
-          size={500}
-          visible={true}
-          color="#000"
-          ariaLabel="infinity-spin-loading"
-        />
-      </div>
-    );
-  }
+  // if (loading) {
+  //   return (
+  //     <div className="flex justify-center w-full items-center h-screen  ">
+  //       <InfinitySpin
+  //         size={500}
+  //         visible={true}
+  //         color="#000"
+  //         ariaLabel="infinity-spin-loading"
+  //       />
+  //     </div>
+  //   );
+  // }
     return (
     <>
       {

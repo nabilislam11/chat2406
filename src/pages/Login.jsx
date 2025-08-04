@@ -7,14 +7,14 @@ import { RiEyeFill } from "react-icons/ri";
 import { Link, useNavigate } from 'react-router';
 import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { ToastContainer, toast } from 'react-toastify';
-import { InfinitySpin } from 'react-loader-spinner'
+// import { InfinitySpin } from 'react-loader-spinner'
 import { useDispatch } from 'react-redux';
 import { userLoginfo } from '../slice/userSlice';
 const Login = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [show, setshow] = useState(false)
-    const [loading, setloading] = useState(false)
+    // const [loading, setloading] = useState(false)
     const [emailErr, setEmailErr] = useState("")
     const [passwordErr, setPassworderr] = useState("")
     const auth = getAuth();
@@ -53,7 +53,7 @@ const Login = () => {
                 console.log("successfull");
                 
                 toast.success("Login successefully done")
-                setloading(true)
+                // setloading(true)
                 console.log(user.user);
                 
                 dispatch(userLoginfo(user.user) );
@@ -69,7 +69,7 @@ const Login = () => {
                 const errorMessage = error.message;
                 console.log(errorMessage);
                 toast.error("login unsuccessefull")
-                setloading(false)
+                // setloading(false)
             }
 
             );
@@ -138,14 +138,14 @@ const Login = () => {
                     </div>
                     <div className="w-[424px] flex flex-col items-center ">
                         {
-                            loading ?
-                                (<InfinitySpin
-                                    visible={true}
-                                    width="200"
-                                    color="#000"
-                                    ariaLabel="infinity-spin-loading"
-                                />)
-                                :
+                            // loading ?
+                            //     (<InfinitySpin
+                            //         visible={true}
+                            //         width="200"
+                            //         color="#000"
+                            //         ariaLabel="infinity-spin-loading"
+                            //     />)
+                            //     :
                                 <button onClick={handleLogin} className=' w-full font-semibold font-nunito text-[20px] text-white py-[26px]  mb-[35px] px-[122px] bg-black rounded-[8px] mt-[51px]  ' >Login to Continue</button>
                         }
 
