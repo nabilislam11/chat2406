@@ -4,6 +4,7 @@ import { BsThreeDotsVertical } from 'react-icons/bs'
 import { FaLocationArrow } from "react-icons/fa";
 import { useSelector } from 'react-redux';
 import { getDatabase, onValue, push, ref, set } from 'firebase/database';
+import time from './time/time';
 const Chat = () => {
 
     const db = getDatabase();
@@ -38,6 +39,7 @@ const Chat = () => {
             whoreceiverid: activedata.id,
             whoreceivername: activedata.name,
             msg: msg,
+            time: time()
         })
         setmsg("")
 
@@ -49,8 +51,8 @@ const Chat = () => {
         onValue(singlemsgRef, (snapshot) => {
             let arr = []
             snapshot.forEach((item) => {
-              if ((userdata.user.uid == item.val().whosenderid &&activedata.id==item.val().whoreceiverid) ||
-             (userdata.user.uid == item.val().whoreceiverid &&activedata.id==item.val().whosenderid)
+              if ((userdata.user.uid == item.val().whosenderid && activedata.id==item.val().whoreceiverid) ||
+             (userdata.user.uid == item.val().whoreceiverid && activedata.id==item.val().whosenderid)
             ) 
               {
                 arr.push(item.val())
@@ -85,15 +87,12 @@ const Chat = () => {
 
                                 <h2 className=' inline-block font-normal font-secondary text-[16px]  bg-black rounded-[7px] text-white py-[12px] px-[42px] '>{item.msg}</h2>
 
-                                <h2 className='font-medium  font-secondary text-[12px]  text-black pt-[7px]   '>Today, 2:01pm</h2>
+                                <h2 className='font-medium  font-secondary text-[12px]  text-black pt-[7px]   '>{item.time} </h2>
                             </div>
-
-
-
                             :
                             <div className=" flex flex-col items-start ">
                                 <h2 className=' inline-block font-normal font-secondary text-[16px]  bg-[#F1F1F1] rounded-[7px] text-black py-[12px] px-[42px] '>{item.msg} </h2>
-                                <h2 className='font-medium  font-secondary text-[12px]  text-black pt-[7px]   '>Today, 2:01pm</h2>
+                                <h2 className='font-medium  font-secondary text-[12px]  text-black pt-[7px]   '>{item.time} </h2>
                             </div>
 
                     ))

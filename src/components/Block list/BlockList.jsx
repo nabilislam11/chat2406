@@ -5,7 +5,7 @@ import block2 from "../../assets/block2.jpg"
 import block3 from "../../assets/block3.jpg"
 import block4 from "../../assets/block4.png"
 import block5 from "../../assets/block5.png"
-import { getDatabase, onValue, ref } from 'firebase/database';
+import { getDatabase, onValue, ref, remove } from 'firebase/database';
 import { useSelector } from 'react-redux';
 
 const BlockList = () => {
@@ -20,7 +20,7 @@ const BlockList = () => {
              
                 
                 if (userdata.user.uid == item.val().blockerId || userdata.user.uid == item.val().blockeredId) {
-                    arr.push(item.val())
+                    arr.push({...item.val(), id: item.key})
                     
                 }
 
@@ -28,6 +28,11 @@ const BlockList = () => {
             setblockList(arr)
         });
     }, [])
+    const handleUnblock = (item)=>{
+     remove(ref(db,'block/'+ item.id)) 
+
+     
+    }
 
 
 
@@ -60,7 +65,11 @@ const BlockList = () => {
                                 </div>
 
                             </div>
-                            <button className='pr-[4px] pl-[9px] bg-black text-white mr-[37px]'>unblock</button>
+                            {
+                                item.blockerId == userdata.user.uid &&
+   
+                            <button onClick={() =>handleUnblock(item)} className='pr-[4px] pl-[9px] bg-black text-white mr-[37px]'>unblock</button>
+                            }
                         </div>
                     ))
                 }
